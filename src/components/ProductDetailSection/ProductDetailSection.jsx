@@ -124,6 +124,7 @@ const [noteVisible,setNoteVisible] = useState(true)
 
 </div>
  <hr className="border-black"></hr>
+  <hr className="border-black"></hr>
 
  </div>
    </div>
