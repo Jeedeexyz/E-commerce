@@ -2,8 +2,7 @@ import DefaultLayout from "../components/layouts/DefaultLayout";
 import FourCardsList from "../components/FourCardsList";
 import TwoCardsList from "../components/TwoCardsList";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
-import Modal from "../components/Model/model";
-import { useState } from "react";
+import Carousel from "../components/Carousel/Carousel";
 
 const products = [
   {
@@ -62,9 +61,24 @@ const products = [
   },
 ];
 
+const images = [
+  "https://beechtree.pk/cdn/shop/files/Web_Banner_Desktop_13.jpg?v=1699256988",
+  "https://beechtree.pk/cdn/shop/files/Web_Banner_Desktop_outerwear.jpg?v=1699012714",
+  "https://pk.sapphireonline.pk/cdn/shop/files/HOME-web-banners.webp?v=1698908393&width=1400",
+];
+
 const HomePage = () => {
   return (
     <DefaultLayout>
+      <div className="">
+        <Carousel
+          images={images}
+          duration={700}
+          showIndicators={true}
+          showControls={true}
+        />
+      </div>
+
       <Breadcrumb showDivider={true} />
 
       <TwoCardsList products={products} />

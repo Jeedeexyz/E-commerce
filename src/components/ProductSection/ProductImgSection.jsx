@@ -2,7 +2,7 @@
 import { useState } from "react"
 import ProductDetailSection from "../ProductDetailSection/ProductDetailSection"
 
-export const ProductImgSection = (props) => {
+export const ProductSection = (props) => {
     const {product} = props
     const [displayImg , setDisplayImg] = useState(product.img1)
   
@@ -10,7 +10,7 @@ export const ProductImgSection = (props) => {
    setDisplayImg(e.target.src);
   }
     return (
-    <div className="flex flex-row gap-7 ">
+    <div className="flex flex-row gap-7 mt-20">
     <div className="w-24 flex flex-col ml-20">
         <img  className="" src={product.img1} onClick={handleClick} />
          <img  src={product.img2}  onClick={handleClick} />
@@ -26,4 +26,4 @@ export const ProductImgSection = (props) => {
 }
 
 
-export default ProductImgSection
+export default ProductSection
