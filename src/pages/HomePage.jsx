@@ -3,6 +3,8 @@ import FourCardsList from "../components/FourCardsList";
 import TwoCardsList from "../components/TwoCardsList";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Carousel from "../components/Carousel/Carousel";
+import { useState } from "react";
+import Dropdown from "../components/Dropdown/Dropdown";
 
 const products = [
   {
@@ -66,8 +68,20 @@ const images = [
   "https://beechtree.pk/cdn/shop/files/Web_Banner_Desktop_outerwear.jpg?v=1699012714",
   "https://pk.sapphireonline.pk/cdn/shop/files/HOME-web-banners.webp?v=1698908393&width=1400",
 ];
-
+const links = [
+  {
+    current: true,
+    href: "#",
+    name: "Home",
+  },
+  {
+    current: false,
+    href: "#",
+    name: "Women",
+  },
+];
 const HomePage = () => {
+  const [view, setView] = useState(4);
   return (
     <DefaultLayout>
       <div className="">
@@ -79,10 +93,38 @@ const HomePage = () => {
         />
       </div>
 
-      <Breadcrumb showDivider={true} />
+      <Breadcrumb showDivider={false} links={links}>
+        <div className="flex gap-6">
+          <div className="flex gap-3">
+            <span>view</span>
+            <button
+              onClick={() => setView(2)}
+              className="bg-gray-800 text-white px-2"
+            >
+              2
+            </button>
+            <button
+              onClick={() => setView(4)}
+              className="bg-gray-800 text-white px-2"
+            >
+              4
+            </button>
+          </div>
 
-      <TwoCardsList products={products} />
-      <FourCardsList products={products} />
+          <Dropdown
+            placeholder={"Filter +"}
+            options={[
+              { label: "Price Low To High", value: "Price Low To High" },
+              { label: "Price High To Low", value: "Price High To Low" },
+            ]}
+          />
+        </div>
+      </Breadcrumb>
+      {view === 2 ? (
+        <TwoCardsList products={products} />
+      ) : (
+        <FourCardsList products={products} />
+      )}
     </DefaultLayout>
   );
 };

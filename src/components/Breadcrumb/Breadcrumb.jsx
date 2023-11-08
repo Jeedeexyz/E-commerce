@@ -1,21 +1,8 @@
-const links = [
-  {
-    current: false,
-    href: "#",
-    name: "Home",
-  },
-  {
-    current: false,
-    href: "#",
-    name: "Buyer Requests",
-  },
-];
-
 // eslint-disable-next-line react/prop-types
-const Breadcrumb = ({ showDivider, separator }) => {
+const Breadcrumb = ({ showDivider, separator, links, children }) => {
   const className = ["inline-flex items-center"];
   if (showDivider) {
-    className.push("border-b border-gray-300 pb-5 w-full");
+    className.push("border-b border-gray-300 pb-5 ");
   }
 
   return (
@@ -23,7 +10,11 @@ const Breadcrumb = ({ showDivider, separator }) => {
       aria-label="Breadcrumb"
       className="flex flex-col flex-wrap sm:flex-row sm:justify-between sm:items-center"
     >
-      <div className={className.join(" ")}>
+      <div
+        className={`w-full flex justify-between px-6 py-4 ${className.join(
+          " "
+        )}`}
+      >
         <ol className="flex items-center mt-4 md:mt-0">
           {links.map((link, index) => (
             <li key={index} className="group">
@@ -60,6 +51,7 @@ const Breadcrumb = ({ showDivider, separator }) => {
             </li>
           ))}
         </ol>
+        <div>{children}</div>
       </div>
     </nav>
   );

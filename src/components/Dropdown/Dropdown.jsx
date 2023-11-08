@@ -1,46 +1,78 @@
-import { MdKeyboardArrowDown } from 'react-icons/md';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useRef } from "react";
+import useOnClickOutside from "../../utils/useOnClickOutside";
 
-const Dropdown = ({ value, onChange, placeholder, options }) => {
-  const [open, setOpen] = useState(false);
+const styles = {
+  default:
+    "border border-[#C1C1D4] w-full p-3 flex rounded-md shadow-sm hover:cursor-pointer hover:border-[#4285F4]",
+  sizes: {
+    default: "w-full",
+    lg: "w-[250px]",
+    sm: "min-w-[171px]",
+  },
+  block: "w-full hover:cursor-pointer",
+  locationIcon: "inline-flex items-center",
+  disabled: "cursor-not-allowed opacity-40",
+  enter: "transition ease-out duration-100 transform opacity-0 scale-95",
+  enterActive: "transform opacity-100 scale-100",
+  leave: "transition ease-in duration-75 transform opacity-100 scale-100",
+  leaveActive: "transform opacity-0 scale-95",
+};
+
+const Dropdown = (props) => {
+  const dropdownEl = useRef(null);
+
+  const classNames = [
+    styles.default,
+    props.showIcon ? styles.locationIcon : "",
+    props.disabled ? styles.disabled : "",
+    styles.sizes[props.size || "default"],
+  ];
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggling = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const [selectedOption, setSelectedOption] = useState(undefined);
+  const onOptionClicked = (value) => () => {
+    props.onOptionClicked && props.onOptionClicked(value);
+    setSelectedOption(value);
+    setIsOpen(false);
+  };
+
+  useOnClickOutside(dropdownEl, () => {
+    setIsOpen(false);
+  });
 
   return (
-    <div className='max-w-[220px] w-full'>
-      <div
-        onClick={() => setOpen(!open)}
-        tabIndex={0}
-        className='w-full flex items-center justify-between py-4 px-2 border-2 border-gray-400 rounded-md cursor-pointer focus:border-[#B6CFFF] focus:shadow-[0px_0px_0px_2px_rgb(182,207,255,0.25)]'
-      >
-        <p className='text-sm text-gray-400'>{value ? value : placeholder}</p>
-        <MdKeyboardArrowDown
-          className={`text-sm transition-all ${open ? 'rotate-180' : 'rotate-0'}`}
-        />
-      </div>
-      {open && (
-        <div className='absolute top-[110] left-0 w-full max-h-[320px] rounded-md border-2 border-gray-400'>
-          {options.map((option) => (
-            <div
-              onClick={() => onChange(option)}
-              className={`flex py-2 px-2 cursor-pointer ${
-                option === value ? 'bg-gray-200' : 'bg-white'
-              } hover:bg-gray-200 rounded-sm`}
-              key={option}
+    <div ref={dropdownEl} className="relative inline-block m-auto">
+      <span className="m-0 p-0 cursor-pointer" onClick={() => toggling()}>
+        {selectedOption || props.placeholder}
+      </span>
+
+      {isOpen && (
+        <ul
+          className={`absolute right-1 w-auto z-10 border bg-white shadow-lg transition ease-in-out delay-150 bg-background-primary ${
+            styles.sizes[props.size || "default"]
+          }`}
+        >
+          {props.options.map((option, index) => (
+            <li
+              key={index}
+              className="dropdown-item list-none text-primary hover:bg-gray-200  hover:cursor-pointer "
             >
-              <p className='text-sm text-black-200'>{option}</p>
-            </div>
+              <div
+                className="flex px-3 py-1.5 m-auto items-center whitespace-nowrap"
+                onClick={onOptionClicked(option.value)}
+              >
+                {option.label}
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
-};
-
-Dropdown.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  placeholder: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Dropdown;
