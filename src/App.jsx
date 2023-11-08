@@ -16,3 +16,13 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+// This is how we will map our product in the page
+//  {productDetail.map((product) => (
+//                          <div key={product.id}>
+//       <ProductDetail product={product} />
+//      </div>
+//                         ))}
