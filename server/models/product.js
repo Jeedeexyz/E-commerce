@@ -20,7 +20,7 @@ const product = new mongoose.Schema({
   },
   sizes: [
     {
-      size: { type: String, required: true },
+      size: { type: String, required: false },
     },
   ],
   description: {
@@ -29,26 +29,27 @@ const product = new mongoose.Schema({
   },
   sizeChart: {
     type: String,
+    required: false,
   },
   fabric: {
     type: String,
-    required: true,
+    required: false,
   },
   content: {
     type: String,
-    required: true,
+    required: false,
   },
   fit: {
     type: String,
-    required: true,
+    required: false,
   },
   modelFit: {
     type: String,
-    required: true,
+    required: false,
   },
   modelSize: {
     type: String,
-    required: true,
+    required: false,
   },
   deliveryDetails: {
     type: String,
@@ -61,7 +62,7 @@ const product = new mongoose.Schema({
   images: [
     {
       src: { type: String, required: true },
-      alt: { type: String, required: true }
+      alt: { type: String, required: true },
     },
   ],
   discount: {

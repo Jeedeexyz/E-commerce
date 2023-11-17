@@ -15,6 +15,7 @@ import SuccessPage from "./pages/cart/SuccessPage";
 import CancelPage from "./pages/cart/CancelPage";
 import ItemsPage from "./pages/ItemsPage";
 import AddCategory from "./pages/AddCategory";
+import PostProductForm from "./pages/PostProductForm";
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -46,10 +47,14 @@ const App = () => {
                 path="/admin/dashboard/addproducts"
                 element={<AdminProductForm />}
               />
-              /admin/dashboard/addcategory
+
               <Route
                 path="/admin/dashboard/addcategory"
                 element={<AddCategory />}
+              />
+              <Route
+                path="/admin/dashboard/postProductForm"
+                element={<PostProductForm />}
               />
             </>
           ) : (

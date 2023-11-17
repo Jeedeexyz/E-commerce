@@ -48,6 +48,12 @@ const navigation = [
     icon: PlusIcon,
     current: false,
   },
+  {
+    name: "Category Forms",
+    href: "/admin/dashboard/postProductForm",
+    icon: PlusIcon,
+    current: false,
+  },
 ];
 
 function classNames(...classes) {

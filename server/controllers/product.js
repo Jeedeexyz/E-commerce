@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+
 const addProduct = async (req, res) => {
   try {
     const {
@@ -131,7 +131,6 @@ const deleteById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 const searchProducts = async (req, res) => {
   try {
