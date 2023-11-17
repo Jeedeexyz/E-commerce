@@ -31,4 +31,18 @@ const getOrders = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, getOrders };
+const deleteOrder = async(req,res)=>{
+  let {id} = req.query;
+  try {
+    const dataAgainstId = Order.findByIdAndDelete({_id:id});
+    if(!dataAgainstId)
+    {
+      return res.status(404).json({ message: "DATA NOT FOUND" });
+    }
+    res.json({ message: "delete successful" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+module.exports = { createOrder, getOrders, deleteOrder };
