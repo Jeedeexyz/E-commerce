@@ -15,9 +15,8 @@ export const PostProductForm = () => {
   const [modalMessage, setModalMessage] = useState("");
 
   const userFormData = async (formData) => {
-    console.log("User Form submitted:", formData);
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:4000/productInfo/createproduct",
         formData
       );

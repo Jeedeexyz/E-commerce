@@ -68,23 +68,26 @@ export const ProductDetail = ({ product, handleClick }) => {
       <s>Rs 11,280</s>
       <h2 className="inline ml-20">Availability:{product.availability}</h2>
       <hr className="border-black" />
-      <div className="flex flex-row gap-6 ml-12 items-center my-2">
-        <h3>Size:</h3>
+      {product.sizes && (
+        <div className="flex flex-row gap-6 ml-12 items-center my-2">
+          <h3>Size:</h3>
 
-        {product.sizes.map((size) => (
-          <p
-            key={size._id}
-            className={` cursor-pointer px-2 border ${
-              selectedSize === size.size
-                ? "bg-black text-white"
-                : "bg-zinc-200  text-black"
-            }`}
-            onClick={() => handleSizeClick(size.size)}
-          >
-            {size.size}
-          </p>
-        ))}
-      </div>
+          {product.sizes.map((size) => (
+            <p
+              key={size._id}
+              className={` cursor-pointer px-2 border ${
+                selectedSize === size.size
+                  ? "bg-black text-white"
+                  : "bg-zinc-200  text-black"
+              }`}
+              onClick={() => handleSizeClick(size.size)}
+            >
+              {size.size}
+            </p>
+          ))}
+        </div>
+      )}
+
       <div className="py-5 mt-10">
         <label>Quantity:</label>
         <button onClick={handleDecrease} className="border-2 py-2 px-3 ml-10">
@@ -123,15 +126,22 @@ export const ProductDetail = ({ product, handleClick }) => {
           </div>
           <div className={descriptionDisplayProperty}>
             <p>{product.description}</p>
-            <p className="mt-10">
-              <b>Fabric:</b> {product.fabric}
-            </p>
+            {product.fabric && (
+              <p className="mt-10">
+                <b>Fabric:</b> {product.fabric}
+              </p>
+            )}
+
             <p className="mb-16">
               <b>What You'll Get:</b> {product.content}
             </p>
-            <p className="mb-16">
-              <b>Fit:</b> {product.fit}
-            </p>
+
+            {product.fit && (
+              <p className="mb-16">
+                <b>Fit:</b> {product.fit}
+              </p>
+            )}
+
             <p className="mb-8">
               <b>Size&Fit:</b>
             </p>
