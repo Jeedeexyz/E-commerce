@@ -59,7 +59,7 @@ export const ProductDetail = ({ product, handleClick }) => {
     setNoteProperty("hidden");
     setNoteVisible(false);
   };
-
+  console.log(product.sizes, "product.sizes");
   return (
     <div className="tracking-wide w-[600px]">
       <h1 className="font-bold text-3xl pb-3">{product.title}</h1>

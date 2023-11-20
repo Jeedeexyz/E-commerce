@@ -5,10 +5,10 @@ import React from "react";
 const Card = (props) => {
   return (
     <a href={`/detail/${props.product._id}`}>
-      <div className="border mb-4">
+      <div className="border shadow-lg transition duration-500 ease-in-out transform hover:scale-105 mb-4">
         <div
           aria-hidden="true"
-          className="relative aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:h-96 lg:aspect-h-8 lg:aspect-w-6 group-hover:opacity-75"
+          className="relative aspect-h-2 aspect-w-3 overflow-hidden  lg:h-96 lg:aspect-h-8 lg:aspect-w-6 group-hover:opacity-75"
         >
           <div className="absolute">
             <img
@@ -36,15 +36,19 @@ const Card = (props) => {
           )}
         </div>
         <div className=" mt-2 p-2 ">
-          <p className="text-base font-semibold leading-6 text-gray-900">
+          <p
+            title={props.product.title}
+            className="text-base font-semibold leading-6 text-gray-900 line-clamp-1"
+          >
             {props.product.title || "title goes here"}
           </p>
           <p className="flex justify-between">
             <span>PKR {props.product.price || "PKR 1600"}</span>
             <span className=" text-sm text-black">
               {props.product.sizes.map((size) => {
-                <span className="text-black">{size.size}</span>;
+                <span className="text-black border">{size.size}</span>;
               })}
+              {props.product.category}
             </span>
           </p>
         </div>

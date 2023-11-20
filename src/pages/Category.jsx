@@ -4,7 +4,6 @@ import TwoCardsList from "../components/TwoCardsList";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import { useState, useEffect } from "react";
 import Dropdown from "../components/Dropdown/Dropdown";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByCategory } from "../store/categoryActions";
 
@@ -32,6 +31,7 @@ const Category = () => {
   if (!products) {
     return <p>Product not found</p>;
   }
+
   const links = [
     {
       current: true,
@@ -81,7 +81,12 @@ const Category = () => {
           />
         </div>
       </Breadcrumb>
-      {view === 2 ? (
+      {products.length === 0 ? (
+        <div className="flex items-center justify-center mt-8">
+          <div className="text-red-500"></div>
+          <p className="text-red-500">Product not found in selected category</p>
+        </div>
+      ) : view === 2 ? (
         <TwoCardsList products={products} />
       ) : (
         <FourCardsList products={products} />

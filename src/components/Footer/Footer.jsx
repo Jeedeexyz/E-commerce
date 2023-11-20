@@ -1,22 +1,29 @@
 const Footer = () => {
   return (
-    <footer className="px-3 divide-y dark:bg-gray-800 dark:text-gray-100">
+    <footer className="px-3 divide-y dark:bg-gray-800 dark:text-gray-100 mt-12">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
           <a
             rel="noopener noreferrer"
             href="/"
-            className="flex justify-center space-x-3 lg:justify-start"
+            className="flex justify-center lg:justify-start"
           >
             <div className="flex items-center justify-center w-12 h-12 rounded-full ">
-              <img
-                src="https://www.svgrepo.com/show/395704/store-shop-shopping-bag.svg"
-                className="mr-2 w-9 h-9"
-                alt="GFG Logo"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#dd6b20"
+                className="w-8 h-8"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.545 3.75 3.75 0 013.255 3.717z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
-            <span className="self-center text-2xl font-semibold">
-              E-Commerce
+            <span className="self-center text-3xl font-bold text-white ">
+              E-co<span className="text-[#dd6b20]">MM</span>erce
             </span>
           </a>
         </div>

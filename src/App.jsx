@@ -16,6 +16,7 @@ import CancelPage from "./pages/cart/CancelPage";
 import ItemsPage from "./pages/ItemsPage";
 import AddCategory from "./pages/AddCategory";
 import PostProductForm from "./pages/PostProductForm";
+import Login from "./pages/Login";
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/detail/:id" element={<DetailsPage />} />
           <Route path="/items/:term" element={<ItemsPage />} />
+          <Route path="/login" element={<Login />} />
           {isAdmin ? (
             <>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />

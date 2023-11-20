@@ -6,7 +6,6 @@ import Carousel from "../components/Carousel/Carousel";
 import { useState, useEffect } from "react";
 import Dropdown from "../components/Dropdown/Dropdown";
 import axios from "axios";
-import Navbar from "../components/NavBar/Navbar";
 
 const images = [
   "https://beechtree.pk/cdn/shop/files/Web_Banner_Desktop_13.jpg?v=1699256988",
@@ -22,7 +21,7 @@ const links = [
   {
     current: false,
     href: "#",
-    name: "Women",
+    name: "home",
   },
 ];
 const HomePage = () => {
@@ -67,52 +66,54 @@ const HomePage = () => {
 
   return (
     <DefaultLayout>
-      <div className="">
-        <Carousel
-          images={images}
-          duration={700}
-          showIndicators={true}
-          showControls={true}
-        />
-      </div>
-
-      <Breadcrumb showDivider={false} links={links}>
-        <div className="flex gap-6">
-          <div className="flex gap-3">
-            <span>view</span>
-            <button
-              onClick={() => setView(2)}
-              className="bg-gray-800 text-white px-2"
-            >
-              2
-            </button>
-            <button
-              onClick={() => setView(4)}
-              className="bg-gray-800 text-white px-2"
-            >
-              4
-            </button>
-          </div>
-
-          <Dropdown
-            placeholder={"Filter +"}
-            options={[
-              { label: "Price Low To High", value: "Price Low To High" },
-              { label: "Price High To Low", value: "Price High To Low" },
-            ]}
-            onOptionClicked={(value) => priceFilter(value)}
-            size={"lg"}
-            className="w-28 border"
+      <div className="py-4 pb-12">
+        <div className="">
+          <Carousel
+            images={images}
+            duration={700}
+            showIndicators={true}
+            showControls={true}
           />
         </div>
-      </Breadcrumb>
-      {loading ? (
-        <p>Loading...</p> // Render a loading message while data is being fetched
-      ) : view === 2 ? (
-        <TwoCardsList products={products} />
-      ) : (
-        <FourCardsList products={products} />
-      )}
+
+        <Breadcrumb showDivider={false} links={links}>
+          <div className="flex gap-6">
+            <div className="flex gap-3">
+              <span>view</span>
+              <button
+                onClick={() => setView(2)}
+                className="bg-gray-800 text-white px-2"
+              >
+                2
+              </button>
+              <button
+                onClick={() => setView(4)}
+                className="bg-gray-800 text-white px-2"
+              >
+                4
+              </button>
+            </div>
+
+            <Dropdown
+              placeholder={"Filter +"}
+              options={[
+                { label: "Price Low To High", value: "Price Low To High" },
+                { label: "Price High To Low", value: "Price High To Low" },
+              ]}
+              onOptionClicked={(value) => priceFilter(value)}
+              size={"lg"}
+              className="w-28 border"
+            />
+          </div>
+        </Breadcrumb>
+        {loading ? (
+          <p>Loading...</p> // Render a loading message while data is being fetched
+        ) : view === 2 ? (
+          <TwoCardsList products={products} />
+        ) : (
+          <FourCardsList products={products} />
+        )}
+      </div>
     </DefaultLayout>
   );
 };
